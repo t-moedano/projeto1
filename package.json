@@ -1,0 +1,19 @@
+{
+  "name": "projeto1",
+  "version": "1.0.0",
+  "description": "Projeto New Tab pra aprendizado HTML/CSS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t-moedano/projeto1.git"
+  },
+  "author": "Thauany Moedano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/t-moedano/projeto1/issues"
+  },
+  "homepage": "https://github.com/t-moedano/projeto1#readme"
+}
