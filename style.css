@@ -1,145 +1,332 @@
 body {
-    font-family: Lato;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin: 0px;
+  font-family: Lato;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin: 0px;
 }
 
-h4, h3 {
-    font-size: 16px;
-    margin-block-start: 0px;
-    margin-block-end: 0px;
+h4,
+h3 {
+  font-size: 16px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
 }
 
-table, th, td {
-    border-collapse: collapse;
+table,
+th,
+td {
+  border-collapse: collapse;
 }
 
 .header-container {
-    display: flex;
-    align-items: center;
-    background-color: #E0E0E0;
-    justify-content: space-around;
-    height: 80px;
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  justify-content: space-around;
+  height: 80px;
 }
 
 .logo-container {
-    display: flex;
-    gap: 20px;
-    align-items: center;
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
 .hamburguer-menu {
-    display: none;
+  display: none;
 }
 
 .financial-control-text {
-    font-family: Lato;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 24px;
+  font-family: Lato;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 .menu-container {
-    display: flex;
-    background-color: white;
-    height: 40px;
-    width: 350px;
-    align-items: center;
-    justify-content: space-evenly;
+  display: flex;
+  background-color: white;
+  height: 40px;
+  width: 350px;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .menu-item {
-    font-family: Lato;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: center;
-    padding: 4px 8px;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 4px 8px;
+  cursor: pointer;
 }
 
 .border-left-right {
-    border-left: 1px solid #979797;
-    border-right: 1px solid #979797;
+  border-left: 1px solid #979797;
+  border-right: 1px solid #979797;
 }
 
 .transaction-panel-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .new-transaction-container {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #979797;
-    border-radius: 4px;
-    padding: 16px;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #979797;
+  border-radius: 4px;
+  padding: 16px;
+  align-items: flex-start;
 }
 
 .align-self {
-    align-self: center;
+  align-self: center;
 }
 
 .grid-transaction-text {
-    align-self: center;
+  align-self: center;
 }
 
 .transaction-type-input-item {
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-    padding: 4px;
-    color: #333333;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  padding: 4px;
+  color: #333333;
 }
 
 .transaction-name-input-item {
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
-    padding: 4px;
-    color: #333333;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  padding: 4px;
+  color: #333333;
 }
 
 .input-style-merchant {
-    width: 370px;
-    border-radius: 4px;
-    border: 1px solid #979797;
-    height: 32px;
-    padding: 0px;
+  width: 370px;
+  border-radius: 4px;
+  border: 1px solid #979797;
+  height: 32px;
+  padding: 0px;
 }
 
 .input-style-value {
-    width: 370px;
-    border-radius: 4px;
-    border: 1px solid #979797;
-    height: 32px;
-    padding: 0px;
+  width: 370px;
+  border-radius: 4px;
+  border: 1px solid #979797;
+  height: 32px;
+  padding: 0px;
 }
 
 ::placeholder {
-    font-family: Lato;
-    padding-left: 4px;
-    font-size: 14px;
+  font-family: Lato;
+  padding-left: 4px;
+  font-size: 14px;
 }
 
 .transaction-button {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  height: 32px;
+  font-size: 14px;
+  background-color: #333333;
+  margin-bottom: 4px;
+  margin-top: 16px;
+  width: 370px;
+  color: white;
+  line-height: 22px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.statement-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.row-style {
+  border-bottom: 1px solid #979797;
+}
+
+.font-size {
+  font-size: 14px;
+}
+
+.center {
+  text-align: center;
+}
+
+.font-style-left {
+  font-size: 14px;
+  text-align: left;
+  font-weight: bold;
+}
+
+.font-style-center {
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.font-style-right {
+  text-align: right;
+}
+
+.block-style {
+  width: 200px;
+  line-height: 16px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.summary-container {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #979797;
+  margin-top: 3px;
+}
+
+.summary-text {
+  font-size: 14px;
+  margin-left: 32px;
+  font-weight: bold;
+}
+
+.summary-sum {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.summary-result {
+  font-size: 10px;
+  text-align: right;
+}
+
+.select-style-merchant {
+  width: 370px;
+  border-radius: 4px;
+  border: 1px solid #979797;
+  height: 32px;
+}
+
+@media (max-width: 769px) {
+  .menu-container {
+    display: none;
+  }
+
+  .hamburguer-menu {
+    display: block;
+  }
+
+  .header-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+  }
+
+  .logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 16px;
+  }
+
+  .new-transaction-container {
+    display: grid;
+    max-width: 728px;
+    grid-template-columns: 150px 300px 150px;
+  }
+
+  .grid-transaction-text {
+    grid-column: 1 / span 3;
+    text-align: center;
+  }
+
+  .input-style-merchant {
+    width: 275px;
+  }
+
+  .input-style-value {
+    width: 150px;
+  }
+
+  .select-style-merchant {
+    width: 100px;
+  }
+
+  .transaction-button {
+    grid-row: 3;
+    grid-column: 1 / span 3;
+    justify-self: flex-end;
+    width: 200px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 642px) {
+  .menu-container {
+    display: none;
+  }
+
+  .hamburguer-menu {
+    display: block;
+  }
+
+  .header-container {
+    display: flex;
+  }
+
+  .logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 16px;
+  }
+
+  .new-transaction-container {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-bottom: 1px solid #979797;
+    border-radius: 4px;
+    padding: 16px;
+    align-items: flex-start;
+  }
+
+  .grid-transaction-text {
+    display: none;
+  }
+
+  .input-style-merchant {
+    width: 90vw;
+  }
+
+  .input-style-value {
+    width: 90vw;
+  }
+
+  .select-style-merchant {
+    width: 90vw;
+  }
+
+  .transaction-button {
     align-self: center;
     height: 32px;
     font-size: 14px;
@@ -147,197 +334,137 @@ table, th, td {
     margin-bottom: 4px;
     margin-top: 16px;
     width: 370px;
+    text-align: center;
     color: white;
     line-height: 22px;
     border-radius: 4px;
+    cursor: pointer;
+  }
 }
 
-.statement-container {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
+#menuToggle {
+  display: block;
+  position: relative;
+  top: 50px;
+  left: 50px;
+
+  z-index: 1;
+
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.row-style {
-    border-bottom: 1px solid #979797;
+#menuToggle a {
+  text-decoration: none;
+  color: #232323;
+
+  transition: color 0.3s ease;
 }
 
-.font-size {
-    font-size: 14px;
+#menuToggle a:hover {
+  color: tomato;
 }
 
-.center {
-    text-align: center;
+#menuToggle input {
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+
+  cursor: pointer;
+
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+
+  -webkit-touch-callout: none;
 }
 
-.font-style-left {
-    font-size: 14px;
-    text-align: left;
-    font-weight: bold;
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span {
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
 
+  background: #cdcdcd;
+  border-radius: 3px;
+
+  z-index: 1;
+
+  transform-origin: 4px 0px;
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
+    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
 }
 
-.font-style-center {
-    font-size: 14px;
-    text-align: center;
-    font-weight: bold;
+#menuToggle span:first-child {
+  transform-origin: 0% 0%;
 }
 
-.font-style-right {
-    text-align: right;
+#menuToggle span:nth-last-child(2) {
+  transform-origin: 0% 100%;
 }
 
-.block-style {
-    width: 200px;
-    line-height: 16px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked ~ span {
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
 }
 
-.summary-container {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid #979797;
-    margin-top: 3px;
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked ~ span:nth-last-child(3) {
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
 }
 
-.summary-text {
-    font-size: 14px;
-    margin-left: 32px;
-    font-weight: bold;
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked ~ span:nth-last-child(2) {
+  transform: rotate(-45deg) translate(0, -1px);
 }
 
-.summary-sum {
-    font-size: 14px;
-    font-weight: bold;
+/*
+ * Make this absolute positioned
+ * at the top left of the screen
+ */
+#menu {
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+
+  background: #ededed;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 }
 
-.summary-result {
-    font-size: 10px;
-    text-align: right;
+#menu li {
+  padding: 10px 0;
+  font-size: 22px;
 }
 
-.select-style-merchant {
-    width: 370px;
-    border-radius: 4px;
-    border: 1px solid #979797;
-    height: 32px;
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked ~ ul {
+  transform: none;
 }
-
-
-@media (max-width: 769px) {
-    .menu-container {
-        display: none;
-    }
-
-    .hamburguer-menu {
-        display: block;
-    }
-
-    .header-container {
-        display: flex;
-    }
-
-    .logo-container {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin: 16px;
-    }
-
-    .new-transaction-container {
-        display: grid;
-        max-width: 728px;
-        grid-template-columns: 150px 300px 150px;
-    }
-
-    .grid-transaction-text {
-        grid-column: 1 / span 3;
-        text-align: center;
-    }
-
-    .input-style-merchant {
-        width: 275px;
-    }
-
-
-    .input-style-value {
-        width: 150px;
-    }
-
-    .select-style-merchant {
-        width: 100px;
-    }
-
-    .transaction-button {
-        grid-row: 3;
-        grid-column: 1 / span 3;
-        justify-self: flex-end;
-        width: 200px;
-    }
-}
-
-@media (max-width: 642px) {
-    .menu-container {
-        display: none;
-    }
-
-    .hamburguer-menu {
-        display: block;
-    }
-
-    .header-container {
-        display: flex;
-    }
-
-    .logo-container {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        margin: 16px;
-    }
-
-    .new-transaction-container {
-        display: flex;
-        flex-direction: column;
-        border: none;
-        border-bottom: 1px solid #979797;
-        border-radius: 4px;
-        padding: 16px;
-        align-items: flex-start;
-    }
-
-    .grid-transaction-text {
-        display: none;
-    }
-
-    .input-style-merchant {
-        width: 90vw;
-    }
-
-
-    .input-style-value {
-        width: 90vw;
-    }
-
-    .select-style-merchant {
-        width: 90vw;
-    }
-
-    .transaction-button {
-        align-self: center;
-        height: 32px;
-        font-size: 14px;
-        background-color: #333333;
-        margin-bottom: 4px;
-        margin-top: 16px;
-        width: 370px;
-        text-align: center;
-        color: white;
-        line-height: 22px;
-        border-radius: 4px;
-    }
-}
-
-
-

@@ -139,3 +139,63 @@ function postToAirTable(value, merchantName, transactionType) {
     .then(json => loadInfoToTable(document.querySelector('table')));
 }
 
+function clearTable() {
+    console.log('LIMPANDO A TABELA DOIDA EIBDIAUS');
+    getInfoFromAirTable(RESPONSIBLE_NUMBER)
+    .then(merchantItems => { deleteAirTable(merchantItems.records); })
+}
+
+function deleteAirTable(records) {
+    let queryString = '';
+    arrayCount = 0;
+    console.log(records);
+    for(let record of records) {
+        console.log('aqui');
+        let id = record.id;
+        if(!queryString)
+            queryString += encodeURI('?records[]='+id);
+        else
+            queryString += encodeURI('&records[]='+id);
+        arrayCount = arrayCount+1;
+        if(arrayCount === 10) {
+            fetch('https://api.airtable.com/v0/appRNtYLglpPhv2QD/Historico'+queryString, {
+                method: 'DELETE',
+                headers: {
+                    Authorization: 'Bearer key2CwkHb0CKumjuM',
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                loadInfoToTable(document.querySelector('table'))
+            })
+            queryString = '';
+            arrayCount = 0;
+        }
+    }
+    console.log(queryString);
+    if(queryString) {
+        fetch('https://api.airtable.com/v0/appRNtYLglpPhv2QD/Historico'+queryString, {
+            method: 'DELETE',
+            headers: {
+                Authorization: 'Bearer key2CwkHb0CKumjuM',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            loadInfoToTable(document.querySelector('table'))
+        })
+    }
+}
+
+
+function format() {
+    let number = document.getElementById("name-value").value;
+    number = number + '';
+    number = number.replace(/[\D]+/g, '');
+    number = number + '';
+    number = number.replace(/([0-9]{1})$/g, ",$1");
+    document.getElementById("name-value").value = number;
+    return number;
+}
+
+

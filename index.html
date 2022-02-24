@@ -22,7 +22,7 @@
         </div>
         <nav class="menu-container">
             <div class="menu-item"><a>Cadastro de Transações</a></div>
-            <div class="menu-item border-left-right"><a>Limpar dados</a></div>
+            <div class="menu-item border-left-right" onclick="clearTable()"><a >Limpar dados</a></div>
         </nav>
     </header>
     <div class="transaction-panel-container">
@@ -41,10 +41,10 @@
             </div>
             <div class="transaction-name-input-item">
                 <label for="name-value">Valor</label>
-                <input id="name-value" placeholder="R$0,00" class="input-style-value">
+                <input id="name-value" onkeypress="format()" placeholder="R$00,00" class="input-style-value">
             </div>
-            <div class="transaction-button">
-                <a onclick="postTransaction()">Adicionar Transação</a>
+            <div onclick="postTransaction()" class="transaction-button">
+                <a >Adicionar Transação</a>
             </div>
         </div>
         <div class="statement-container">
