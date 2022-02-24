@@ -7,9 +7,9 @@
     <title>Controle Financeiro</title>
     <link rel="stylesheet" href="/style.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-
+    <script src="index.js"> </script>
 </head>
-<body>
+<body onload="loadInfoToTable(document.querySelector('table'))">
     <header class="header-container">
         <div class="logo-container">
             <img src="imgs/logo.svg" alt="Logo"/>
@@ -21,9 +21,8 @@
             </div>
         </div>
         <nav class="menu-container">
-            <div class="menu-item"><a>Dashboard</a></div>
-            <div class="menu-item border-left-right"><a>Resumo</a></div>
-            <div class="menu-item"><a>Configurações</a></div>
+            <div class="menu-item"><a>Cadastro de Transações</a></div>
+            <div class="menu-item border-left-right"><a>Limpar dados</a></div>
         </nav>
     </header>
     <div class="transaction-panel-container">
@@ -32,8 +31,8 @@
             <div class="transaction-type-input-item">
                 <label for="transaction">Tipo de transação</label>
                 <select class="select-style-merchant" name="transaction" id="transaction">
-                    <option value="buy">Compra</option>
-                    <option value="sell">Venda</option>
+                    <option value="+">Compra</option>
+                    <option value="-">Venda</option>
                 </select>
             </div>
             <div class="transaction-name-input-item">
@@ -41,42 +40,52 @@
                 <input id="name-merchant" placeholder="Input" class="input-style-merchant">
             </div>
             <div class="transaction-name-input-item">
-                <label for="name-merchant">Valor</label>
-                <input id="name-merchant" placeholder="R$0,00" class="input-style-value">
+                <label for="name-value">Valor</label>
+                <input id="name-value" placeholder="R$0,00" class="input-style-value">
             </div>
             <div class="transaction-button">
-                <a >Adicionar Transação</a>
+                <a onclick="postTransaction()">Adicionar Transação</a>
             </div>
         </div>
         <div class="statement-container">
             <h3 class="align-self">Extrato de Transações</h3>
-            <table style="width:100%">
-                <tr>
-                    <th style="width:5%" class="row-style"></th>
-                    <th style="width:70%"  class="row-style font-style-left">Mercadoria</th>
-                    <th class="row-style font-style-center">Valor</th>
-                </tr>
-                <tr>
-                    <td class="row-style font-size center">+</td>
-                    <td class="row-style font-size"><div class="block-style">Lorem ipsum dolor sit amet consectetur</div></td>
-                    <td class="row-style font-size font-style-right">R$ 12.999,99</td>
-                </tr>
-                <tr>
-                    <td class="row-style font-size center">-</td>
-                    <td class="row-style font-size"><div class="block-style">Quis nostrud exercitation</div></td>
-                    <td class="row-style font-size font-style-right">R$ 99,99</td>
-                </tr>
-                <tr>
-                    <td class="row-style font-size center">+</td>
-                    <td class="row-style font-size"><div class="block-style">Lorem ipsum</div></td>
-                    <td class="row-style font-size font-style-right">R$ 9,99</td>
-                </tr>
+            <table  style="width:100%" class="table">
+                <thead>
+                    <tr>
+                        <th style="width:5%" class="row-style"></th>
+                        <th style="width:70%"  class="row-style font-style-left">Mercadoria</th>
+                        <th class="row-style font-style-center">Valor</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                  <tr>
+                        <td class="row-style font-size center"></td>
+                        <td class="row-style font-size"><div class="block-style">Não há transações cadastradas</div></td>
+                        <td class="row-style font-size font-style-right"></td>
+                    </tr>
+                   <!-- <tr>
+                        <td class="row-style font-size center">+</td>
+                        <td class="row-style font-size"><div class="block-style">Lorem ipsum dolor sit amet consectetur</div></td>
+                        <td class="row-style font-size font-style-right">R$ 12.999,99</td>
+                    </tr>
+                    <tr>
+                        <td class="row-style font-size center">-</td>
+                        <td class="row-style font-size"><div class="block-style">Quis nostrud exercitation</div></td>
+                        <td class="row-style font-size font-style-right">R$ 99,99</td>
+                    </tr>
+                    <tr>
+                        <td class="row-style font-size center">+</td>
+                        <td class="row-style font-size"><div class="block-style">Lorem ipsum</div></td>
+                        <td class="row-style font-size font-style-right">R$ 9,99</td>
+                    </tr>
+                </tbody>-->
+
             </table>
             <div class="summary-container">
                 <div class="summary-text">Total</div>
                 <div class="summary-sum">
-                    <div>R$ 12.909,99</div>
-                    <div class="summary-result">[LUCRO]</div>
+                    <div id="sum"></div>
+                    <div id="result" class="summary-result"></div>
                 </div>
             </div>
         </div>
