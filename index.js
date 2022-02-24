@@ -1,4 +1,9 @@
 const RESPONSIBLE_NUMBER = '4442';
+
+/**
+ * Post new transactions, insert to Air Table
+ * @returns 
+ */
 function postTransaction() {
     //validate fields
     let value = document.getElementById("name-value").value;
@@ -6,6 +11,11 @@ function postTransaction() {
     const transactionType = document.getElementById("transaction").value;
     if(!value || !merchantName || !transactionType) {
         alert("Todos os campos são obrigatórios!");
+        return;
+    }
+
+    if(value.length < 5) {
+        alert('Preencher Valor corretamente!');
         return;
     }
 
@@ -187,15 +197,18 @@ function deleteAirTable(records) {
     }
 }
 
+function formatElement(number) {
+    number = format(number);
+    document.getElementById("name-value").value = number;
+}
 
-function format() {
-    let number = document.getElementById("name-value").value;
+function format(number) {
     number = number + '';
     number = number.replace(/[\D]+/g, '');
     number = number + '';
     number = number.replace(/([0-9]{1})$/g, ",$1");
-    document.getElementById("name-value").value = number;
     return number;
 }
 
+module.exports = format;
 

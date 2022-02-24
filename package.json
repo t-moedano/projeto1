@@ -4,7 +4,7 @@
   "description": "Projeto New Tab pra aprendizado HTML/CSS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "devDependencies": {
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "jest": "^27.5.1"
   }
 }

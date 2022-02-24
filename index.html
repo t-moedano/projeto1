@@ -16,8 +16,16 @@
             <div class="financial-control-text-container">
                 <h3 class="financial-control-text">Controle Financeiro</h3>
             </div>
-            <div class="hamburguer-menu">
-                <img src="imgs/shape.svg" alt="Menu"/>
+            <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" />
+                <label class="menu__btn" for="menu__toggle">
+                    <span></span>
+                </label>
+
+                <ul class="menu__box">
+                    <li><a class="menu__item" href="/">Cadastro de Transações</a></li>
+                    <li><a class="menu__item" onclick="clearTable()">Limpar dados</a></li>
+                </ul>
             </div>
         </div>
         <nav class="menu-container">
@@ -41,7 +49,7 @@
             </div>
             <div class="transaction-name-input-item">
                 <label for="name-value">Valor</label>
-                <input id="name-value" onkeypress="format()" placeholder="R$00,00" class="input-style-value">
+                <input id="name-value" onkeypress="formatElement(document.getElementById('name-value').value)" placeholder="R$00,00" class="input-style-value">
             </div>
             <div onclick="postTransaction()" class="transaction-button">
                 <a >Adicionar Transação</a>
@@ -58,28 +66,12 @@
                     </tr>
                 </thead>
                 <tbody id="tbody">
-                  <tr>
+                    <tr>
                         <td class="row-style font-size center"></td>
                         <td class="row-style font-size"><div class="block-style">Não há transações cadastradas</div></td>
                         <td class="row-style font-size font-style-right"></td>
                     </tr>
-                   <!-- <tr>
-                        <td class="row-style font-size center">+</td>
-                        <td class="row-style font-size"><div class="block-style">Lorem ipsum dolor sit amet consectetur</div></td>
-                        <td class="row-style font-size font-style-right">R$ 12.999,99</td>
-                    </tr>
-                    <tr>
-                        <td class="row-style font-size center">-</td>
-                        <td class="row-style font-size"><div class="block-style">Quis nostrud exercitation</div></td>
-                        <td class="row-style font-size font-style-right">R$ 99,99</td>
-                    </tr>
-                    <tr>
-                        <td class="row-style font-size center">+</td>
-                        <td class="row-style font-size"><div class="block-style">Lorem ipsum</div></td>
-                        <td class="row-style font-size font-style-right">R$ 9,99</td>
-                    </tr>
-                </tbody>-->
-
+                </tbody>
             </table>
             <div class="summary-container">
                 <div class="summary-text">Total</div>
