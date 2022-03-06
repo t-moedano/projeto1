@@ -14,7 +14,7 @@ function postTransaction() {
         return;
     }
 
-    if(value.length < 5) {
+    if(value.length < 3) {
         alert('Preencher Valor corretamente!');
         return;
     }
@@ -24,7 +24,7 @@ function postTransaction() {
     if(transactionType == "-" ) {
         value = value * -1;
     }
-    postToAirTable(value, merchantName, transactionType);
+    postOrUpdateAirTable(value, merchantName, transactionType);
 
 }
 
@@ -45,33 +45,33 @@ function createTableFromArray(table, merchantItemsArray) {
     if(merchantItemsArray.length === 0) {
         let text = 'Não há transações cadastradas';
         let rowElement = document.createElement('tr');
-        generateCellElement('', rowElement, false);
-        generateCellElement(text, rowElement, true);
-        generateCellElement('', rowElement, false);
+        generateCellElement('', rowElement, false, false);
+        generateCellElement(text, rowElement, true, false);
+        generateCellElement('', rowElement, false, true);
         tableBody.appendChild(rowElement);
     }
 
-    // Add Items
-    for (const item of merchantItemsArray) {
-        const rowElement = document.createElement('tr');
-        console.log(item);
-        console.log(item.fields);
-        const jsonField = JSON.parse(item.fields.Json);
-        let value = jsonField[0].value; // STOPPED HERE, --- INCLUINDO OS VALORES DO CAMPO NO JSON PRA CRIAR AS ROWS DA TABELA
-        if(value) {
-            
-            finalResult += value;
-            value = value.toFixed(2);
-            value = "R$ " + value;
-            value = value.replace('.', ',');
+    else {
+        for (const item of JSON.parse(merchantItemsArray[0].fields.Json)) {
+            const rowElement = document.createElement('tr');
+            console.log(item);
+            let value = item.value;
+            if(value) {
+                
+                finalResult += value;
+                value = Math.abs(value).toFixed(2);
+                value = "R$ " + value;
+                value = value.replace(',', '.');
+            }
+            const type = item.type;
+            const name = item.name;
+            generateCellElement(type, rowElement, false, false);
+            generateCellElement(name, rowElement, true, false);
+            generateCellElement(value, rowElement, false, true);
+            tableBody.appendChild(rowElement);
         }
-        const type = jsonField[0].type;
-        const name = jsonField[0].name;
-        generateCellElement(type, rowElement, false);
-        generateCellElement(name, rowElement, true);
-        generateCellElement(value, rowElement, false);
-        tableBody.appendChild(rowElement);
     }
+    
 
     // generate sum
     let sum = document.getElementById('sum');
@@ -90,7 +90,7 @@ function createTableFromArray(table, merchantItemsArray) {
     }
 }
 
-function generateCellElement(textContent, rowElement, isCenter) {
+function generateCellElement(textContent, rowElement, isCenter, isRight) {
     const cellElement = document.createElement('td');
     cellElement.textContent = textContent;
     cellElement.classList.add('row-style');
@@ -101,14 +101,19 @@ function generateCellElement(textContent, rowElement, isCenter) {
         cellElement.classList.add('center')
         const divElement = document.createElement('div');
         divElement.classList.add('block-style');
+        divElement.classList.add('font-style-left');
         divElement.innerHTML = textContent;
         cellElement.appendChild(divElement);
+    }
+
+    if(isRight) {
+        cellElement.classList.add('font-style-right');
     }
     rowElement.appendChild(cellElement);
 }
 
 function getInfoFromAirTable(responsible) {
-    return fetch('https://api.airtable.com/v0/appRNtYLglpPhv2QD/Historico?filterByFormula='+encodeURI(`{Responsavel} = '${responsible}'`), {
+    return fetch('https://api.airtable.com/v0/appRNtYLglpPhv2QD/Historico?filterByFormula='+encodeURI(`{Responsavel} = '${responsible}'&sort%5B0%5D%5Bdirection%5D=asc`), {
         method: 'GET',
         headers: {
             Authorization: 'Bearer key2CwkHb0CKumjuM',
@@ -117,6 +122,53 @@ function getInfoFromAirTable(responsible) {
     })
     .then(response => { return response.json() })
     .then(json => { return json });
+}
+
+function postOrUpdateAirTable(value, merchantName, transactionType) {
+    getInfoFromAirTable(RESPONSIBLE_NUMBER)
+    .then(merchantItems => {
+        console.log(merchantItems)
+        if(merchantItems.records.length === 0) {
+            console.log(merchantItems)
+            postToAirTable(value, merchantName, transactionType);
+        }
+        else {
+            updateToAirTable(value, merchantName, transactionType, merchantItems);
+        }
+    })
+}
+
+function updateToAirTable(value, merchantName, transactionType, merchantItems) {
+    console.log(merchantItems.records[0]);
+    let jsonArray = JSON.parse(merchantItems.records[0].fields.Json);
+    jsonArray.push({
+        type: transactionType,
+        name: merchantName,
+        value
+    });
+    let jsonArrayString = JSON.stringify(jsonArray);
+    fetch(`https://api.airtable.com/v0/appRNtYLglpPhv2QD/Historico`, {
+        method: 'PATCH',
+        headers: {
+            Authorization: 'Bearer key2CwkHb0CKumjuM',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+            {
+                records: [
+                    {
+                        id: merchantItems.records[0].id,
+                        fields: {
+                            Responsavel: RESPONSIBLE_NUMBER,
+                            Json: jsonArrayString
+                        }
+                    }
+                ]
+            }
+        )
+    })
+    .then(response => { return response.json() })
+    .then(json => loadInfoToTable(document.querySelector('table')));
 }
 
 function postToAirTable(value, merchantName, transactionType) {
@@ -149,8 +201,13 @@ function postToAirTable(value, merchantName, transactionType) {
     .then(json => loadInfoToTable(document.querySelector('table')));
 }
 
+function confirmClearTable() {
+    if (confirm("Deseja realmente excluir todos os dados?")) {
+        clearTable();
+    }
+}
+
 function clearTable() {
-    console.log('LIMPANDO A TABELA DOIDA EIBDIAUS');
     getInfoFromAirTable(RESPONSIBLE_NUMBER)
     .then(merchantItems => { deleteAirTable(merchantItems.records); })
 }
@@ -203,12 +260,17 @@ function formatElement(number) {
 }
 
 function format(number) {
-    number = number + '';
-    number = number.replace(/[\D]+/g, '');
-    number = number + '';
-    number = number.replace(/([0-9]{1})$/g, ",$1");
-    return number;
+    let formattedNumber = number.replace(/\D/g,'');
+    if(formattedNumber.length > 11) {
+        formattedNumber = formattedNumber.slice(0, -1);
+    }
+	formattedNumber = (formattedNumber/100).toFixed(2) + '';
+	formattedNumber = formattedNumber.replace(".", ",");
+	formattedNumber= formattedNumber.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
+	formattedNumber = formattedNumber.replace(/(\d)(\d{3}),/g, "$1.$2,");
+	return formattedNumber;
 }
+
 
 module.exports = format;
 

@@ -23,11 +23,12 @@ td {
 }
 
 .header-container {
-  display: flex;
+  display: grid;
   align-items: center;
   background-color: #e0e0e0;
   justify-content: space-around;
   height: 80px;
+  grid-template-columns: 150px 1fr 1fr 150px;
 }
 
 .logo-container {
@@ -37,7 +38,8 @@ td {
 }
 
 .hamburger-menu {
-  display: none;
+  display: block;
+  justify-self: right;
 }
 
 .financial-control-text {
@@ -55,6 +57,7 @@ td {
   width: 350px;
   align-items: center;
   justify-content: space-evenly;
+  justify-self: right;
 }
 
 .menu-item {
@@ -71,24 +74,24 @@ td {
 
 .border-left-right {
   border-left: 1px solid #979797;
-  border-right: 1px solid #979797;
 }
 
 .transaction-panel-container {
-  display: flex;
+  display: grid;
   justify-content: center;
   margin-top: 30px;
   flex-wrap: wrap;
-  gap: 20px;
+  grid-template-columns: 150px 1fr 2fr 150px;
 }
 
 .new-transaction-container {
-  display: flex;
+  display: grid;
   flex-direction: column;
   border: 1px solid #979797;
   border-radius: 4px;
   padding: 16px;
   align-items: flex-start;
+  height: 300px;
 }
 
 .align-self {
@@ -97,6 +100,7 @@ td {
 
 .grid-transaction-text {
   align-self: center;
+  justify-self: center;
 }
 
 .transaction-type-input-item {
@@ -116,7 +120,6 @@ td {
 }
 
 .input-style-merchant {
-  width: 370px;
   border-radius: 4px;
   border: 1px solid #979797;
   height: 32px;
@@ -124,7 +127,6 @@ td {
 }
 
 .input-style-value {
-  width: 370px;
   border-radius: 4px;
   border: 1px solid #979797;
   height: 32px;
@@ -150,7 +152,6 @@ td {
   background-color: #333333;
   margin-bottom: 4px;
   margin-top: 16px;
-  width: 370px;
   color: white;
   line-height: 22px;
   border-radius: 4px;
@@ -160,7 +161,7 @@ td {
 .statement-container {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  padding-left: 50px;
 }
 
 .row-style {
@@ -196,6 +197,8 @@ td {
   line-height: 16px;
   margin-top: 8px;
   margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .summary-container {
@@ -222,7 +225,6 @@ td {
 }
 
 .select-style-merchant {
-  width: 370px;
   border-radius: 4px;
   border: 1px solid #979797;
   height: 32px;
@@ -232,6 +234,8 @@ td {
 
 #menu__toggle {
   opacity: 0;
+  position: absolute;
+  left: 0;
 }
 
 #menu__toggle:checked + .menu__btn > span {
@@ -292,88 +296,41 @@ td {
 
 .menu__box {
   display: block;
-  position: fixed;
-  top: 0;
-  left: 100%;
-  width: 90%;
-  height: 100%;
-  margin: 0;
-  padding: 80px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   list-style: none;
-  background-color: #333;
-  color: white;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-  transition-duration: 0.25s;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  background-color: white;
+  height: 40px;
+  width: 350px;
+  align-items: center;
+  justify-content: space-evenly;
+  justify-self: right;
 }
 
 .menu__item {
-  display: block;
-  padding: 12px 24px;
-  color: white;
-  text-align: right;
-  font-size: 20px;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
   font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 4px 8px;
+  cursor: pointer;
   text-decoration: none;
-  transition-duration: 0.25s;
+  color: black;
 }
 
-.menu__item:hover {
-  background-color: #cfd8dc;
+.hamburger-icon {
+  display: none;
+  position: absolute;
 }
 
-@media (max-width: 769px) {
-  .menu-container {
-    display: none;
-  }
-
-  .hamburger-menu {
-    display: block;
-  }
-
-  .header-container {
-    display: flex;
-  }
-
-  .logo-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin: 16px;
-  }
-
-  .new-transaction-container {
-    display: grid;
-    max-width: 728px;
-    grid-template-columns: 150px 300px 150px;
-  }
-
-  .grid-transaction-text {
-    grid-column: 1 / span 3;
-    text-align: center;
-  }
-
-  .input-style-merchant {
-    width: 275px;
-  }
-
-  .input-style-value {
-    width: 150px;
-  }
-
-  .select-style-merchant {
-    width: 100px;
-  }
-
-  .transaction-button {
-    grid-row: 3;
-    grid-column: 1 / span 3;
-    justify-self: flex-end;
-    width: 200px;
-    cursor: pointer;
-  }
-}
-
-@media (max-width: 642px) {
+/* @media (max-width: 642px) {
   .menu-container {
     display: none;
   }
@@ -433,7 +390,11 @@ td {
     border-radius: 4px;
     cursor: pointer;
   }
-}
+
+  .hamburger-icon {
+    display: block;
+  }
+} */
 
 #menuToggle {
   display: block;
@@ -560,4 +521,141 @@ td {
  */
 #menuToggle input:checked ~ ul {
   transform: none;
+}
+
+/* table */
+
+@media (max-width: 769px) and (min-width: 643px) {
+  .menu__box {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 90%;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    transition-duration: 0.25s;
+  }
+  .menu__item {
+    display: block;
+    padding: 12px 24px;
+    color: white;
+    text-align: right;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: 0.25s;
+  }
+
+  .menu__item:hover {
+    background-color: #cfd8dc;
+  }
+
+  .hamburger-icon {
+    display: block;
+  }
+
+  .header-container {
+    display: grid;
+    align-items: center;
+    background-color: #e0e0e0;
+    justify-content: space-around;
+    height: 80px;
+    grid-template-columns: 15px 1fr auto;
+  }
+
+  .transaction-panel-container {
+    display: grid;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    gap: 50px;
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+  .statement-container {
+    margin-bottom: 40px;
+  }
+
+  .grid-transaction-text {
+    align-self: center;
+    justify-self: center;
+    grid-column: 3 span;
+  }
+  .new-transaction-container {
+    display: grid;
+    flex-direction: column;
+    border: 1px solid #979797;
+    border-radius: 4px;
+    padding: 0;
+    align-items: flex-start;
+    height: 300px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .transaction-button {
+    grid-column: 3;
+  }
+}
+
+/* mobile */
+@media (max-width: 642px) {
+  .menu__box {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 90%;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    transition-duration: 0.25s;
+  }
+  .menu__item {
+    display: block;
+    padding: 12px 24px;
+    color: white;
+    text-align: right;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: 0.25s;
+  }
+
+  .menu__item:hover {
+    background-color: #cfd8dc;
+  }
+
+  .hamburger-icon {
+    display: block;
+  }
+
+  .header-container {
+    display: grid;
+    align-items: center;
+    background-color: #e0e0e0;
+    justify-content: space-around;
+    height: 80px;
+    grid-template-columns: 15px 1fr auto;
+  }
+
+  .transaction-panel-container {
+    display: grid;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    gap: 50px;
+    grid-template-columns: auto;
+  }
+  .statement-container {
+    margin-bottom: 40px;
+  }
 }
